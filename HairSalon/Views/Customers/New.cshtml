@@ -1,0 +1,20 @@
+@using HairSalon.Models
+@{
+  Layout="_Layout";
+}
+<div class="header">
+  <h1 class="title">Add New Customer</h1>
+</div>
+<div class="panel">
+  <div class="panel panelbody">
+    <form action="/employees/@Model.GetId()/customers" method="post">
+      <input id="employee_id" name="employee_id" type="hidden" value="@Model.GetId()">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required>
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<a href="/employees/@Model.GetId()">Back to List of Customers</a>

@@ -1,0 +1,20 @@
+@using HairSalon.Models;
+@{
+  Layout="_Layout";
+}
+<div class="header">
+  <h1 class="title">EMPLOYEE INDEX</h1>
+</div>
+@if(Model.Count==0)
+{
+  <p>No employees available</p>
+}
+@if(Model.Count!=0)
+{
+  @foreach(Employee employee in Model)
+  {
+    <p><a class="generated" href="/employees/@employee.GetId()">@employee.Name()</a></p>
+  }
+}
+
+  <p><a href="/employees/new">Add new employee</a></p>

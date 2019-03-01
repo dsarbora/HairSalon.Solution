@@ -1,14 +1,14 @@
-@using BestRestaurants.Models;
+@using HairSalon.Models;
 @{
   Layout="_Layout";
 }
 <div class="header">
-  <h1 class="title">Edit Cuisine</h1>
+  <h1 class="title">Edit Employee</h1>
 </div>
-<form action="/cuisines/@Model.GetId()" method="post">
-  <label for="type">Type</label>
-  <input id="type" name="type" type="text" value="@Model.GetCuisineType()">
+<form action="/employees/@Model.GetId()" method="post">
+  <label for="name">Name</label>
+  <input id="name" name="name" type="text" value="@Model.GetName()">
   <button type="submit">Submit</button>
 </form>
 
-<a href='/cuisines'>Go back to cuisines</a>
+<a href='/employees'>Go back to employees</a>
