@@ -32,34 +32,124 @@ namespace HairSalon.Models
             return EmployeeId;
         }
 
-        public void Save()
-        {
+                public void Save()
+                {
+                    MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO customers (name, employee_id) VALUES (@name, @employee_id);";
+            MySqlParameter prmName = new MySqlParameter();
+            prmName.ParameterName = "@name";
+            prmName.Value = Name;
+            cmd.Parameters.Add(prmName);
+            MySqlParameter employeeId = new MySqlParameter();
+            employeeId.ParameterName = "@employee_id";
+            employeeId.Value = CuisineId;
+            cmd.Parameters.Add(employeeId);
+            cmd.ExecuteNonQuery();
 
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
         }
 
         public void Edit(string name)
         {
-
+            MySqlConnection conn=DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"UPDATE customers SET name=@name WHERE id=@id;";
+            MySqlParameter prmName = new MySqlParameter();
+            prmName.ParameterName = "@name";
+            prmName.Value = name;
+            cmd.Parameters.Add(prmName);
+            MySqlParameter prmId = new MySqlParameter();
+            prmId.ParameterName = "@id";
+            prmId.Value = Id;
+            cmd.Parameters.Add(prmId);
+            cmd.ExecuteNonQuery();
+            Name = name;
+            conn.Close();
+            if(conn != null)
+            {
+                conn.Dispose();
+            }
         }
 
         public void Delete()
         {
-
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText= @"DELETE FROM customers WHERE id = @id;";
+            MySqlParameter prmId = new MySqlParameter();
+            prmId.ParameterName = "@id";
+            prmId.Value = Id;
+            cmd.Parameters.Add(prmId);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
         }
 
         public static void ClearAll()
         {
-
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM customers;";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
         }
 
         public override bool Equals(System.Object otherCustomer)
         {
+            if(!(otherCustomer is Customer))
+            return false;
 
+            else
+            {
+                Customer newCustomer = (Customer) otherCustomer;
+                bool nameEquality = this.GetName().Equals(otherCustomer.GetName());
+                bool idEquality = this.GetId().Equals(newCustomer.GetId());
+                bool employeeIdEquality = this.GetEmployeeId().Equals(newCustomer.GetEmployeeId());
+                return (nameEquality && idEquality && employeeIdEquality);
+            }
         }
 
         public static Customer Find(int id)
         {
-
+            MySqlConnection conn = new MySqlConnection();
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandText = @"SELECT * FROM customers WHERE id=@id;";
+            MySqlParameter prmId = new MySqlParameter();
+            prmId.ParameterName = "@id";
+            prmId.Value = id;
+            cmd.Parameters.Add(prmId);
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            string name = "";
+            int employeeId = 0;
+            while(rdr.Read())
+            {
+                name=rdr.GetString(1);
+                employeeId=GetInt32(2);
+            }
+            Customer newCustomer = new Customer(name, employeeId, id);
+            conn.Close();
+            if (conn!=null)
+            {
+                conn.Dispose();
+            }
+            return newCustomer;
         }
     }
 
