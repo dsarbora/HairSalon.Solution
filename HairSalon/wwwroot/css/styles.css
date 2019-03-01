@@ -1,0 +1,42 @@
+body {
+    padding: 30 px;
+    background-color: #CCCCCC;
+}
+
+.header{
+    text-align: center;
+}
+
+.title{
+    font-size: 50px;
+}
+
+a{
+    border-bottom: 1px solid #777777;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #333333;
+    border-top: 1px solid #000000;
+    border-radius: 30px;
+    color: rgb(181, 173, 212);
+    background-color: #000000;
+    display: block;
+    height: 2.5em;
+    padding: 0 1em;
+    width: 6em;       
+    text-decoration: none;
+    font-weight: bold;
+
+}
+form{
+    margin-bottom: 30px;
+}
+
+input{
+    width: 450px;
+    margin-bottom: 10px;
+}
+
+.generated{
+    background-color: rgb(109, 142, 202);
+    color: black;
+}
