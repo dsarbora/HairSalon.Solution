@@ -9,7 +9,7 @@ namespace HairSalon.Models
         int Id;
         string Name;
 
-        public Employee(string name, string id)
+        public Employee(string name, int id)
         {
             Name=name;
             Id=id;
@@ -20,7 +20,7 @@ namespace HairSalon.Models
             return Name;
         }
 
-        public string GetId()
+        public int GetId()
         {
             return Id;
         }

@@ -44,7 +44,7 @@ namespace HairSalon.Models
             cmd.Parameters.Add(prmName);
             MySqlParameter employeeId = new MySqlParameter();
             employeeId.ParameterName = "@employee_id";
-            employeeId.Value = CuisineId;
+            employeeId.Value = EmployeeId;
             cmd.Parameters.Add(employeeId);
             cmd.ExecuteNonQuery();
 
@@ -117,8 +117,8 @@ namespace HairSalon.Models
 
             else
             {
-                Customer newCustomer = (Customer) otherCustomer;
-                bool nameEquality = this.GetName().Equals(otherCustomer.GetName());
+                Customer newCustomer = (Customer)otherCustomer;
+                bool nameEquality = this.GetName().Equals(newCustomer.GetName());
                 bool idEquality = this.GetId().Equals(newCustomer.GetId());
                 bool employeeIdEquality = this.GetEmployeeId().Equals(newCustomer.GetEmployeeId());
                 return (nameEquality && idEquality && employeeIdEquality);
@@ -140,8 +140,8 @@ namespace HairSalon.Models
             int employeeId = 0;
             while(rdr.Read())
             {
-                name=rdr.GetString(1);
-                employeeId=GetInt32(2);
+                name = rdr.GetString(1);
+                employeeId = rdr.GetInt32(2);
             }
             Customer newCustomer = new Customer(name, employeeId, id);
             conn.Close();
