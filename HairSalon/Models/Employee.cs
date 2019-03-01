@@ -9,7 +9,7 @@ namespace HairSalon.Models
         int Id;
         string Name;
 
-        public Employee(string name, int id)
+        public Employee(string name, int id=0)
         {
             Name=name;
             Id=id;

@@ -13,7 +13,7 @@
 {
   @foreach(Employee employee in Model)
   {
-    <p><a class="generated" href="/employees/@employee.GetId()">@employee.Name()</a></p>
+    <p><a class="generated" href="/employees/@employee.GetId()">@employee.GetName()</a></p>
   }
 }
 

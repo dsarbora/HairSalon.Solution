@@ -11,7 +11,7 @@ namespace HairSalon.Controllers
         [HttpGet("/employees")]
         public ActionResult Index()
         {
-            return View(Employees.GetAll());
+            return View(Employee.GetAll());
         }
 
         [HttpGet("employees/new")]
@@ -33,7 +33,7 @@ namespace HairSalon.Controllers
         {
         Dictionary<string, object> model = new Dictionary<string, object>();
         Employee searchedEmployee = Employee.Find(id);
-        model["name"] = searchedEmployee;
+        model["employee"] = searchedEmployee;
         model["customers"] = searchedEmployee.GetAllCustomers();
         return View(model);
         }
