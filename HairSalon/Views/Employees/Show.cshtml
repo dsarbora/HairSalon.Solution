@@ -18,7 +18,7 @@
 }
 <p><a href="/employees/@Model["employee"].GetId()/customers/new">Add customer</a><p>
 <p><a href="/employees/@Model["employee"].GetId()/edit">Edit employee</a></p>
-<p><a href="/employees">Go back to Employees</a></p>
+<p><a class="navigate" href="/employees">Go back to Employees</a></p>
 <form action='/employees/@Model["employee"].GetId()/delete' method="post">
-  <button type='submit'>Delete</button>
+  <button class="btn btn-warning" type='submit'>Delete</button>
 </form>

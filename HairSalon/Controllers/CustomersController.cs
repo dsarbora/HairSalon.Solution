@@ -8,14 +8,14 @@ namespace HairSalon.Controllers
 {
     public class CustomersController : Controller
     {
-        [HttpGet("/employee/{id}/customers/new")]
+        [HttpGet("/employees/{id}/customers/new")]
         public ActionResult New(int id)
         {
             Employee searchedEmployee = Employee.Find(id);
             return View(searchedEmployee);
         }
 
-        [HttpGet("/employee/{employeeId}/customers/{id}")]
+        [HttpGet("/employees/{employeeId}/customers/{id}")]
         public ActionResult Show(int employeeId, int id)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
@@ -26,7 +26,7 @@ namespace HairSalon.Controllers
             return View(model);
         }
 
-        [HttpGet("/employee/{employeeId}/customers/{id}/edit")]
+        [HttpGet("/employees/{employeeId}/customers/{id}/edit")]
         public ActionResult Edit(int id, int employeeId)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
@@ -37,7 +37,7 @@ namespace HairSalon.Controllers
             return View(model);
         }
 
-        [HttpPost("/employee/{employeeId}/customers/{id}")]
+        [HttpPost("/employees/{employeeId}/customers/{id}")]
         public ActionResult Update(int id, int employeeId, string name)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();

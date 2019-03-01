@@ -25,7 +25,6 @@ a{
     width: 6em;       
     text-decoration: none;
     font-weight: bold;
-
 }
 form{
     margin-bottom: 30px;
@@ -38,5 +37,15 @@ input{
 
 .generated{
     background-color: rgb(109, 142, 202);
+    color: black;
+}
+
+.navigate{
+    background-color: rgb(129, 211, 129);
+    color: #333333;
+}
+
+.delete{
+    background-color: red;
     color: black;
 }
