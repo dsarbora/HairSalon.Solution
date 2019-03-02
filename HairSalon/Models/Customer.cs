@@ -127,15 +127,15 @@ namespace HairSalon.Models
 
         public static Customer Find(int id)
         {
-            MySqlConnection conn = new MySqlConnection();
+            MySqlConnection conn = DB.Connection();
             conn.Open();
-            MySqlCommand cmd = new MySqlCommand();
+            MySqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = @"SELECT * FROM customers WHERE id=@id;";
             MySqlParameter prmId = new MySqlParameter();
             prmId.ParameterName = "@id";
             prmId.Value = id;
             cmd.Parameters.Add(prmId);
-            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            MySqlDataReader rdr = cmd.ExecuteReader();
             string name = "";
             int employeeId = 0;
             while(rdr.Read())

@@ -3,49 +3,66 @@ body {
     background-color: #CCCCCC;
 }
 
-.header{
+.header {
     text-align: center;
 }
 
-.title{
+.title {
     font-size: 50px;
 }
 
-a{
-    border-bottom: 1px solid #777777;
+a {
+    /* border-bottom: 1px solid #777777;
     border-left: 1px solid #000000;
     border-right: 1px solid #333333;
     border-top: 1px solid #000000;
     border-radius: 30px;
     color: rgb(181, 173, 212);
     background-color: #000000;
-    display: block;
-    height: 2.5em;
+    display: block; */
+    height: 50px;
     padding: 0 1em;
-    width: 6em;       
+    width: 150px;       
     text-decoration: none;
     font-weight: bold;
 }
-form{
+form {
     margin-bottom: 30px;
 }
 
-input{
+input {
     width: 450px;
     margin-bottom: 10px;
 }
 
-.generated{
+.generated {
     background-color: rgb(109, 142, 202);
     color: black;
 }
 
-.navigate{
-    background-color: rgb(129, 211, 129);
-    color: #333333;
+.navigate {
+    position: fixed;
+    bottom: 0;
+    left: 30px;
+    border: 1px solid black;
+    height: 150px;
+    width: 250px;
+    padding-bottom: 30px;
+    padding-left: 15px;
+    padding-top: 15px;
+    
 }
 
-.delete{
-    background-color: red;
-    color: black;
+.left {
+    left: 110px;
+    position: absolute;
 }
+
+.center {
+    text-align: center;
+    padding: 15px;
+}
+.half-panel{
+    width: 200px;
+}
+

@@ -3,22 +3,39 @@
   Layout="_Layout";
 }
 <div class="header">
+  <div class="left">
+    <form action='/employees/@Model["employee"].GetId()/delete' method="post">
+    <button class="btn btn-danger" type='submit'>Delete</button>
+    </form>
+  </div>
   <h1 class="title">@Model["employee"].GetName()</h1>
 </div>
-@if(Model["customers"].Count == 0)
-{
-  <p>No customers found for this Employee</p>
-}
-@if(Model["customers"].Count != 0)
-{
-  @foreach(Customer customer in Model["customers"])
-  {
-    <p><a class="generated" href="/employees/@Model["employee"].GetId()/customers/@customer.GetId()">@customer.GetName()</a></p>
-  }
-}
-<p><a href="/employees/@Model["employee"].GetId()/customers/new">Add customer</a><p>
-<p><a href="/employees/@Model["employee"].GetId()/edit">Edit employee</a></p>
-<p><a class="navigate" href="/employees">Go back to Employees</a></p>
-<form action='/employees/@Model["employee"].GetId()/delete' method="post">
-  <button class="btn btn-warning" type='submit'>Delete</button>
-</form>
+<hr>
+<div class="row">
+  <div class="col-md-4 center">
+    <div class="panel panel-success center half-panel">
+      <p><a class="btn btn-success" href="/employees/@Model["employee"].GetId()/customers/new">Add customer</a><p>
+      <p><a class="btn btn-warning" href="/employees/@Model["employee"].GetId()/edit">Edit employee</a></p>
+      <p><a class="btn btn-primary" href="/employees">Employees Home</a></p>
+    </div>
+  </div>
+    <div class="col-md-4">
+      <div class="panel panel-body">
+        @if(Model["customers"].Count == 0)
+        {
+          <p>No customers found for this Employee</p>
+        }
+        @if(Model["customers"].Count != 0)
+        {
+          @foreach(Customer customer in Model["customers"])
+          {
+            <p><a class="btn btn-info" href="/employees/@Model["employee"].GetId()/customers/@customer.GetId()">@customer.GetName()</a></p>
+          }
+        }
+      </div>
+  </div>
+  <div class="col-md-4">
+
+  </div>
+</div>
+

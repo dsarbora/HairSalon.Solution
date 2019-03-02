@@ -5,16 +5,28 @@
 <div class="header">
   <h1 class="title">EMPLOYEE INDEX</h1>
 </div>
-@if(Model.Count==0)
-{
-  <p>No employees available</p>
-}
-@if(Model.Count!=0)
-{
-  @foreach(Employee employee in Model)
-  {
-    <p><a class="generated" href="/employees/@employee.GetId()">@employee.GetName()</a></p>
-  }
-}
+<hr>
+<div class="row">
+  <div class="col-md-4">
+    <p><a class="btn btn-success" href="/employees/new">Add new employee</a></p>
+  </div>
+  <div class="col-md-4">
+    @if(Model.Count==0)
+    {
+      <p>No employees available</p>
+    }
+    @if(Model.Count!=0)
+    {
+      @foreach(Employee employee in Model)
+      {
+        <p><a class="btn btn-info" href="/employees/@employee.GetId()">@employee.GetName()</a></p>
+      }
+    }
+  </div>
+  <div class="col-md-4">
+    
+  </div>
+</div>
 
-  <p><a class="navigate" href="/employees/new">Add new employee</a></p>
+
+  

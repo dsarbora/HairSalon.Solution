@@ -5,10 +5,9 @@
 <div class="header">
   <h1 class="title">Edit Employee</h1>
 </div>
+<hr>
 <form action="/employees/@Model.GetId()" method="post">
   <label for="name">Name</label>
   <input id="name" name="name" type="text" value="@Model.GetName()">
-  <button type="submit">Submit</button>
+  <button class="btn btn-info" type="submit">Submit</button>
 </form>
-
-<a href='/employees'>Go back to employees</a>

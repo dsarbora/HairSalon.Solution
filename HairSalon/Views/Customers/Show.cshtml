@@ -5,11 +5,9 @@
 <div class="header">
   <h1>@Model["customer"].GetName() @Model["employee"].GetName()</h1>
 </div>
-
-<p>Address: @Model["customer"].GetAddress()<p>
-
-<a href='/employees/@Model["empoyee"].GetId()/customers/@Model["customer"].GetId()/edit'>Edit</a>
-<form action='/employees/@Model["empoyee"].GetId()/customers/@Model["customer"].GetId()/delete' method="post">
-  <button class="delete" type="submit">Delete</button>
+<hr>
+<a class="btn btn-warning" href='/employees/@Model["employee"].GetId()/customers/@Model["customer"].GetId()/edit'>Edit</a>
+<a class="btn btn-success" href='/employees/@Model["employee"].GetId()/'>Back to Cusomers</a>
+<form action='/employees/@Model["employee"].GetId()/customers/@Model["customer"].GetId()/delete' method="post">
+  <button class="btn btn-danger" type="submit">Delete</button>
 </form>
-<a href='/employees/@Model["empoyee"].GetId()/'>Back to Cusomers</a>

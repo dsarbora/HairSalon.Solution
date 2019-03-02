@@ -5,13 +5,14 @@
 <div class="header">
   <h1 class="title">Create New Employee</h1>
 </div>
+<hr>
 <div>
     <form action="/employees" method="post">
     <label for="name">Name</label>
     <input id="name" name="name" type="text" required>
-    <button type="submit">Submit</button>
+    <button class="btn btn-info" type="submit">Submit</button>
     </form>
 </div>
-<div>
-    <a class="navigate" href="/employees">Back to employees</a>
+<div class="navigate">
+    <a href="/employees">Back to employees</a>
 </div>
