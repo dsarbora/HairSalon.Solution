@@ -15,5 +15,12 @@ namespace HairSalon.Tests
             Employee.ClearAll();
             Customer.ClearAll();
         }
+
+        [TestMethod]
+        public void EmployeeConstructor_CanCreateInstanceOfEmployee_True()
+        {
+            Employee newEmployee = new Employee("Joe");
+            
+        }
     }
 }
