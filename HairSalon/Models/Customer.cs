@@ -47,7 +47,7 @@ namespace HairSalon.Models
             employeeId.Value = EmployeeId;
             cmd.Parameters.Add(employeeId);
             cmd.ExecuteNonQuery();
-
+            Id=(int)cmd.LastInsertedId;
             conn.Close();
             if(conn!=null)
             {

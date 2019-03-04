@@ -35,9 +35,8 @@ namespace HairSalon.Models
             prmName.ParameterName = "@name";
             prmName.Value = Name;
             cmd.Parameters.Add(prmName);
-
             cmd.ExecuteNonQuery();
-
+            Id=(int)cmd.LastInsertedId;
             conn.Close();
             if(conn!=null)
             {
