@@ -6,7 +6,7 @@
   <h1 class="title">Edit Customer</h1>
 </div>
 <hr>
-<form action="/employee/@Model["employee"].GetId()/customers/@Model["customer"].GetId()" method="post">
+<form action='/employee/@Model["employee"].GetId()/customers/@Model["customer"].GetId()' method="post">
   <label for="name">Name</label>
   <input id="name" name="name" type="text" value="@Model["customer"].GetName()">
   <button class="btn btn-info" type="submit">Submit</button>

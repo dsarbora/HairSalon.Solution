@@ -38,7 +38,6 @@ namespace HairSalon.Tests
         //     List<Customer> emptyList = new List<Customer>{};
         //     List<Customer> testList = Customer.GetAllCustomers();
         //     CollectionAssert.AreEqual (emptyList, testList);
-    
         // }
         // [TestMethod]
         // public void Save_AssignsCustomerIdToClientSide_True()
@@ -46,14 +45,7 @@ namespace HairSalon.Tests
         //     Customer newCustomer = new Customer("John", 1);
         //     newCustomer.Save();
         //     Customer testCustomer = Customer.GetAll()[0];
-
-
         // }
-//         // [TestMethod]
-//         // public void ###()
-//         // {
-
-//         // }
         [TestMethod]
         public void GetEmployeeId_ReturnsEmployeeId()
         {
