@@ -23,7 +23,7 @@
       <div>
         @if(Model["customers"].Count == 0)
         {
-          <p>No customers found for this Employee</p>
+          <p>No customers found for @Model["employee"].GetName()</p>
         }
         @if(Model["customers"].Count != 0)
         {

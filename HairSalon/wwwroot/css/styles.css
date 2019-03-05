@@ -58,6 +58,10 @@ input {
     position: absolute;
 }
 
+.right {
+    right: 110px;
+    position: absolute;
+}
 .center {
     text-align: center;
     padding: 15px;

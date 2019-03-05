@@ -27,7 +27,7 @@ namespace HairSalon.Controllers
         }
 
         [HttpGet("/employees/{employeeId}/customers/{id}/edit")]
-        public ActionResult Edit(int id, int employeeId)
+        public ActionResult Edit(int employeeId, int id)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Employee searchedEmployee = Employee.Find(employeeId);
