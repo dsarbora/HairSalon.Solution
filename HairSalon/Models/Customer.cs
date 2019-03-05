@@ -59,7 +59,7 @@ namespace HairSalon.Models
         {
             MySqlConnection conn=DB.Connection();
             conn.Open();
-            MySqlCommand cmd = conn.CreateCommand();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"UPDATE customers SET name=@name WHERE id=@id;";
             MySqlParameter prmName = new MySqlParameter();
             prmName.ParameterName = "@name";
@@ -70,7 +70,7 @@ namespace HairSalon.Models
             prmId.Value = Id;
             cmd.Parameters.Add(prmId);
             cmd.ExecuteNonQuery();
-            Name = name;
+            //Name = name;
             conn.Close();
             if(conn != null)
             {

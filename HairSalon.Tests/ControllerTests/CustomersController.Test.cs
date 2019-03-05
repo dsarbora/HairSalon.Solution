@@ -8,8 +8,14 @@ using HairSalon.Models;
 namespace HairSalonControllers.Tests
 {
     [TestClass]
-    public class CustomersControllerTest
+    public class CustomersControllerTest : IDisposable
     {
+        public void Dispose()
+        {
+            Employee.ClearAll();
+            Customer.ClearAll();
+        }
+
         [TestMethod]
         public void New_HasCorrectModelType_True()
         {

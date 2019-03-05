@@ -13,14 +13,14 @@
 <hr>
 <div class="row">
   <div class="col-md-4 center">
-    <div class="panel panel-success center half-panel">
+    <div>
       <p><a class="btn btn-success" href="/employees/@Model["employee"].GetId()/customers/new">Add customer</a><p>
       <p><a class="btn btn-warning" href="/employees/@Model["employee"].GetId()/edit">Edit employee</a></p>
       <p><a class="btn btn-primary" href="/employees">Employees Home</a></p>
     </div>
   </div>
     <div class="col-md-4">
-      <div class="panel panel-body">
+      <div>
         @if(Model["customers"].Count == 0)
         {
           <p>No customers found for this Employee</p>
