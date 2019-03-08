@@ -8,12 +8,10 @@ namespace HairSalon.Models
     {
         int Id;
         string Name;
-        int EmployeeId;
 
-        public Customer(string name, int employeeId, int id=0)
+        public Customer(string name, int id=0)
         {
             Name=name;
-            EmployeeId=employeeId;
             Id=id;
         }
 
@@ -27,10 +25,7 @@ namespace HairSalon.Models
             return Id;
         }
 
-        public int GetEmployeeId()
-        {
-            return EmployeeId;
-        }
+
 
                 public void Save()
                 {
@@ -42,10 +37,6 @@ namespace HairSalon.Models
             prmName.ParameterName = "@name";
             prmName.Value = Name;
             cmd.Parameters.Add(prmName);
-            MySqlParameter employeeId = new MySqlParameter();
-            employeeId.ParameterName = "@employee_id";
-            employeeId.Value = EmployeeId;
-            cmd.Parameters.Add(employeeId);
             cmd.ExecuteNonQuery();
             Id=(int)cmd.LastInsertedId;
             conn.Close();
@@ -120,8 +111,7 @@ namespace HairSalon.Models
                 Customer newCustomer = (Customer)otherCustomer;
                 bool nameEquality = this.GetName().Equals(newCustomer.GetName());
                 bool idEquality = this.GetId().Equals(newCustomer.GetId());
-                bool employeeIdEquality = this.GetEmployeeId().Equals(newCustomer.GetEmployeeId());
-                return (nameEquality && idEquality && employeeIdEquality);
+                return (nameEquality && idEquality);
             }
         }
 
@@ -137,13 +127,11 @@ namespace HairSalon.Models
             cmd.Parameters.Add(prmId);
             MySqlDataReader rdr = cmd.ExecuteReader();
             string name = "";
-            int employeeId = 0;
             while(rdr.Read())
             {
                 name = rdr.GetString(1);
-                employeeId = rdr.GetInt32(2);
             }
-            Customer newCustomer = new Customer(name, employeeId, id);
+            Customer newCustomer = new Customer(name, id);
             conn.Close();
             if (conn!=null)
             {

@@ -23,13 +23,13 @@ namespace HairSalon.Tests
         [TestMethod]
         public void CustomerConstructor_CreatesCustomer_True()
         {
-            Customer newCustomer = new Customer("John",1);
+            Customer newCustomer = new Customer("John");
             Assert.AreEqual(typeof(Customer), newCustomer.GetType());
         }
         [TestMethod]
         public void GetName_ReturnsCustomerName_String()
         {
-            Customer newCustomer = new Customer("John", 1);
+            Customer newCustomer = new Customer("John");
             Assert.AreEqual ("John", newCustomer.GetName());
         }
         // [TestMethod]
@@ -42,19 +42,9 @@ namespace HairSalon.Tests
         // [TestMethod]
         // public void Save_AssignsCustomerIdToClientSide_True()
         // {
-        //     Customer newCustomer = new Customer("John", 1);
+        //     Customer newCustomer = new Customer("John");
         //     newCustomer.Save();
         //     Customer testCustomer = Customer.GetAll()[0];
         // }
-        [TestMethod]
-        public void GetEmployeeId_ReturnsEmployeeId()
-        {
-            Employee newEmployee = new Employee("John");
-            Customer newCustomer = new Customer("Joe", newEmployee.GetId());
-            int test = newEmployee.GetId();
-            int result = newCustomer.GetEmployeeId();
-            Assert.AreEqual (test, result);
-        }
-        
     }
 }

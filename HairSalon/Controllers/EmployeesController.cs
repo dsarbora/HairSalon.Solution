@@ -28,15 +28,15 @@ namespace HairSalon.Controllers
         return RedirectToAction("Index");
         }
 
-        [HttpGet("/employees/{id}")]
-        public ActionResult Show(int id)
-        {
-        Dictionary<string, object> model = new Dictionary<string, object>();
-        Employee searchedEmployee = Employee.Find(id);
-        model["employee"] = searchedEmployee;
-        model["customers"] = searchedEmployee.GetAllCustomers();
-        return View(model);
-        }
+        // [HttpGet("/employees/{id}")]
+        // public ActionResult Show(int id)
+        // {
+        // Dictionary<string, object> model = new Dictionary<string, object>();
+        // Employee searchedEmployee = Employee.Find(id);
+        // model["employee"] = searchedEmployee;
+        // model["customers"] = searchedEmployee.GetAllCustomers();
+        // return View(model);
+        // }
 
         [HttpGet("/employees/{id}/edit")]
         public ActionResult Edit(int id)
@@ -64,7 +64,7 @@ namespace HairSalon.Controllers
         public ActionResult Create(int id, string name)
         {
             Employee searchedEmployee = Employee.Find(id);
-            Customer newCustomer = new Customer(name, id);
+            Customer newCustomer = new Customer(name);
             newCustomer.Save();
             return RedirectToAction("Show", id);
         }

@@ -84,32 +84,32 @@ namespace HairSalon.Models
             }
         }
 
-        public List<Customer> GetAllCustomers()
-        {
-            List<Customer> allClients = new List<Customer>{};
-            MySqlConnection conn = DB.Connection();
-            conn.Open();
-            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM customers WHERE employee_id=@employee_id;";
-            MySqlParameter prmId = new MySqlParameter();
-            prmId.ParameterName = "@employee_id";
-            prmId.Value = Id;
-            cmd.Parameters.Add(prmId);
-            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-            while(rdr.Read())
-            {
-                int id = rdr.GetInt32(0);
-                string name = rdr.GetString(1);
-                Customer newCustomer = new Customer(name, Id, id);
-                allClients.Add(newCustomer);
-            }
-            conn.Close();
-            if(conn!=null)
-            {
-                conn.Dispose();
-            }
-            return allClients;
-        }
+        // public List<Customer> GetAllCustomers()
+        // {
+        //     List<Customer> allClients = new List<Customer>{};
+        //     MySqlConnection conn = DB.Connection();
+        //     conn.Open();
+        //     MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+        //     cmd.CommandText = @"SELECT * FROM customers WHERE employee_id=@employee_id;";
+        //     MySqlParameter prmId = new MySqlParameter();
+        //     prmId.ParameterName = "@employee_id";
+        //     prmId.Value = Id;
+        //     cmd.Parameters.Add(prmId);
+        //     MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+        //     while(rdr.Read())
+        //     {
+        //         int id = rdr.GetInt32(0);
+        //         string name = rdr.GetString(1);
+        //         Customer newCustomer = new Customer(name, id);
+        //         allClients.Add(newCustomer);
+        //     }
+        //     conn.Close();
+        //     if(conn!=null)
+        //     {
+        //         conn.Dispose();
+        //     }
+        //     return allClients;
+        // }
 
         public override bool Equals(System.Object otherEmployee)
         {
