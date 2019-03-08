@@ -27,9 +27,9 @@ namespace HairSalon.Models
 
 
 
-                public void Save()
-                {
-                    MySqlConnection conn = DB.Connection();
+        public void Save()
+        {
+            MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"INSERT INTO customers (name, employee_id) VALUES (@name, @employee_id);";

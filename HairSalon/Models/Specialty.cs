@@ -22,7 +22,8 @@ namespace HairSalon.Models
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
-            MySqlCommand cmd = new MySqlCommand("DELETE FROM specialties; DELETE FROM employee_specialty; DELETE FROM client_specialty;", conn);
+            MySqlCommand cmd = new MySqlCommand("DELETE FROM specialties; DELETE FROM employee_specialty; DELETE FROM customer_specialty;", conn);
+            cmd.ExecuteNonQuery();
             conn.Close();
             if(conn!=null)
             {
@@ -56,7 +57,7 @@ namespace HairSalon.Models
         {
             MySqlConnection conn= DB.Connection();
             conn.Open();
-            MySqlCommand cmd = new MySqlCommand("GET * FROM specialties WHERE id = @id;", conn);
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM specialties WHERE id = @id;", conn);
             MySqlParameter prmId = new MySqlParameter();
             prmId.ParameterName = "@id";
             prmId.Value = id;
@@ -82,14 +83,29 @@ namespace HairSalon.Models
             conn.Open();
             MySqlCommand cmd = new MySqlCommand("INSERT INTO specialties (name) VALUES (@name);", conn);
             MySqlParameter prmName = new MySqlParameter();
-            prmName.ParameterName = "@name;";
+            prmName.ParameterName = "@name";
             prmName.Value = Name;
             cmd.Parameters.Add(prmName);
             cmd.ExecuteNonQuery();
+            Id=(int)cmd.LastInsertedId;
             conn.Close();
             if(conn!=null)
             {
                 conn.Dispose();
+            }
+        }
+        public override bool Equals(System.Object otherSpecialty)
+        {
+            if(!(otherSpecialty is Specialty))
+            {
+                return false;
+            }
+            else
+            {
+                Specialty newSpecialty = (Specialty)otherSpecialty;
+                bool idEquality = this.Id.Equals(newSpecialty.GetId());
+                bool nameEquality = this.Name.Equals(newSpecialty.GetName());
+                return (idEquality && nameEquality);
             }
         }
     }
