@@ -38,18 +38,18 @@ namespace HairSalon.Tests
             ActionResult newView = controller.New();
             Assert.AreEqual(newView.GetType(), typeof(ViewResult));
         }
-        [TestMethod]
-        public void Show_HastCorrectModel_True()
-        {
-            Employee newEmployee = new Employee("Jackson");
-            newEmployee.Save();
-            int id = newEmployee.GetId();
-            EmployeesController controller=new EmployeesController();
-            ViewResult showView=controller.Show(id) as ViewResult;
-            var result = showView.ViewData.Model;
-            Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
+        // [TestMethod]
+        // public void Show_HastCorrectModel_True()
+        // {
+        //     Employee newEmployee = new Employee("Jackson");
+        //     newEmployee.Save();
+        //     int id = newEmployee.GetId();
+        //     EmployeesController controller=new EmployeesController();
+        //     ViewResult showView=controller.Show(id) as ViewResult;
+        //     var result = showView.ViewData.Model;
+        //     Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
 
-        }
+        // }
         [TestMethod]
         public void Edit_HasCorrectModel_True()
         {
