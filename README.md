@@ -29,7 +29,7 @@ Download Mono and install.
 * _Natvigate to http://localhost:5000/ in your web browser._
 
 ## _DATABASE INFORMATION_
-* _There are two databases associated with this project. If needed, they can be created under the names "first_last" and "first_last_test."_
+* _There are two databases associated with this project. If needed, they can be created under the names "dave_sarbora" and "dave_sarbora_test."_
 * _Each database should be structurally identical and contain two tables: "customers" and "employees."_
 * _The "employees" table should include two columns in this order: "id," a serial PRIMARY KEY, and "name," data type VARCHAR._
 * _The "customers" table is comprised of three columns in this order: "id," a serial PRIMARY KEY, "name," with data type VARCHAR, and "employee_id" of type int._
