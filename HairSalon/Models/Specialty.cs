@@ -111,6 +111,99 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
         }
+
+        public void AddEmployee(int employeeId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO employee_specialty (employee_id, specialty_id) VALUES (@employee_id, @specialty_id);", conn);
+            MySqlParameter prmEmployeeId = new MySqlParameter();
+            prmEmployeeId.ParameterName = "@employee_id";
+            prmEmployeeId.Value = employeeId;
+            cmd.Parameters.Add(prmEmployeeId);
+            MySqlParameter prmSpecialtyId = new MySqlParameter();
+            prmSpecialtyId.ParameterName = "@specialty_id";
+            prmSpecialtyId.Value = Id;
+            cmd.Parameters.Add(prmSpecialtyId);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
+        }
+
+        public List<Employee> GetAllEmployees()
+        {
+            List<Employee> employeeList = new List<Employee>{};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("SELECT employees.* FROM specialties JOIN employee_specialty es ON (specialties.id=es.specialty_id) JOIN employees ON (employees.id = es.employee_id) WHERE specialty_id = @specialty_id;", conn);
+            MySqlParameter prmId = new MySqlParameter();
+            prmId.ParameterName = "@specialty_id";
+            prmId.Value = Id;
+            cmd.Parameters.Add(prmId);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            while(rdr.Read())
+            {
+                string name = rdr.GetString(1);
+                int id = rdr.GetInt32(0);
+                Employee newEmployee = new Employee(name, id);
+                employeeList.Add(newEmployee);
+            }
+
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
+            return employeeList;
+        }
+
+        public void AddCustomer(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("INSERT INTO customer_specialty (customer_id, specialty_id) VALUES (@customer_id, @specialty_id);", conn);
+            MySqlParameter customerId = new MySqlParameter();
+            customerId.ParameterName = "@customer_id";
+            customerId.Value = id;
+            cmd.Parameters.Add(customerId);
+            MySqlParameter specialtyId = new MySqlParameter();
+            specialtyId.ParameterName = "@specialty_id";
+            specialtyId.Value = Id;
+            cmd.Parameters.Add(specialtyId);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
+         
+        }
+
+        public List<Customer> GetAllCustomers()
+        {
+            List<Customer> allCustomers = new List<Customer>{};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("SELECT customers.* FROM specialties JOIN customer_specialty cs ON (specialties.id = cs.specialty_id) JOIN customers ON (customers.id=cs.customer_id);", conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            while(rdr.Read())
+            {
+                int id = rdr.GetInt32(0);
+                string name = rdr.GetString(1);
+                Customer newCustomer = new Customer(name, id);
+                allCustomers.Add(newCustomer);
+            }
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
+            return allCustomers;
+        }
+
         public override bool Equals(System.Object otherSpecialty)
         {
             if(!(otherSpecialty is Specialty))
