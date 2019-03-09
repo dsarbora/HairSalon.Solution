@@ -94,6 +94,23 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
         }
+
+        public void Delete()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("DELETE FROM specialties WHERE id = @id; DELETE FROM employee_specialty WHERE specialty_id = @id;", conn);
+            MySqlParameter prmId= new MySqlParameter();
+            prmId.ParameterName = "@id";
+            prmId.Value = Id;
+            cmd.Parameters.Add(prmId);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
+        }
         public override bool Equals(System.Object otherSpecialty)
         {
             if(!(otherSpecialty is Specialty))

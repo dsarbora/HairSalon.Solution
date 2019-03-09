@@ -39,7 +39,16 @@ namespace HairSalon.Tests
             otherSpecialty.Save();
             Specialty foundSpecialty = Specialty.Find(newSpecialty.GetId());
             Assert.AreEqual(newSpecialty, foundSpecialty);
-
+        }
+        [TestMethod]
+        public void Delete_DeletesFromDatabase_EmptyList()
+        {
+            Specialty newSpecialty = new Specialty("mullet");
+            newSpecialty.Save();
+            newSpecialty.Delete();
+            List<Specialty> manualList = new List<Specialty>{};
+            List<Specialty> autoList = Specialty.GetAll();
+            CollectionAssert.AreEqual(manualList, autoList);
         }
     }
 }
