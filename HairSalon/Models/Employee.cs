@@ -71,7 +71,7 @@ namespace HairSalon.Models
             MySqlConnection conn = DB.Connection();
             conn.Open();
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"DELETE FROM employees WHERE id=@id;";
+            cmd.CommandText = @"DELETE FROM employees WHERE id=@id; DELETE FROM customer_employee WHERE id = @id";
             MySqlParameter prmId = new MySqlParameter();
             prmId.ParameterName = "@id";
             prmId.Value = Id;
@@ -84,32 +84,32 @@ namespace HairSalon.Models
             }
         }
 
-        // public List<Customer> GetAllCustomers()
-        // {
-        //     List<Customer> allClients = new List<Customer>{};
-        //     MySqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //     MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-        //     cmd.CommandText = @"SELECT * FROM customers WHERE employee_id=@employee_id;";
-        //     MySqlParameter prmId = new MySqlParameter();
-        //     prmId.ParameterName = "@employee_id";
-        //     prmId.Value = Id;
-        //     cmd.Parameters.Add(prmId);
-        //     MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-        //     while(rdr.Read())
-        //     {
-        //         int id = rdr.GetInt32(0);
-        //         string name = rdr.GetString(1);
-        //         Customer newCustomer = new Customer(name, id);
-        //         allClients.Add(newCustomer);
-        //     }
-        //     conn.Close();
-        //     if(conn!=null)
-        //     {
-        //         conn.Dispose();
-        //     }
-        //     return allClients;
-        // }
+        public List<Customer> GetAllCustomers()
+        {
+            List<Customer> allClients = new List<Customer>{};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT customers.* FROM employees JOIN customer_employee ce ON (ce.employee_id=employees.id) JOIN customers ON (customers.id = ce.customer_id) WHERE employee_id = @employee_id;";
+            MySqlParameter prmId = new MySqlParameter();
+            prmId.ParameterName = "@employee_id";
+            prmId.Value = Id;
+            cmd.Parameters.Add(prmId);
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while(rdr.Read())
+            {
+                int id = rdr.GetInt32(0);
+                string name = rdr.GetString(1);
+                Customer newCustomer = new Customer(name, id);
+                allClients.Add(newCustomer);
+            }
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
+            return allClients;
+        }
 
         public override bool Equals(System.Object otherEmployee)
         {
@@ -181,5 +181,47 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
         }
+
+        public void AddCustomer(int id)
+         {
+             MySqlConnection conn = DB.Connection();
+             conn.Open();
+             MySqlCommand cmd = new MySqlCommand("INSERT INTO customer_employee (customer_id, employee_id) VALUES (@customer_id, @employee_id);", conn);
+             MySqlParameter prmEmployeeId = new MySqlParameter();
+             prmEmployeeId.ParameterName = "@employee_id";
+             prmEmployeeId.Value = Id;
+             cmd.Parameters.Add(prmEmployeeId);
+             MySqlParameter prmCustomerId = new MySqlParameter();
+             prmCustomerId.ParameterName = "@customer_id";
+             prmCustomerId.Value = id;
+             cmd.Parameters.Add(prmCustomerId);
+             cmd.ExecuteNonQuery();
+             conn.Close();
+             if(conn!=null)
+             {
+                 conn.Dispose();
+             }
+         }
+         
+         public void DeleteCustomer(int id)
+         {
+             MySqlConnection conn = DB.Connection();
+             conn.Open();
+             MySqlCommand cmd = new MySqlCommand("DELETE FROM customer_employee WHERE customer_id = @customer_id AND employee_id = @employee_id", conn);
+             MySqlParameter prmCustomerId = new MySqlParameter();
+             prmCustomerId.ParameterName = "@customer_id";
+             prmCustomerId.Value = id;
+             cmd.Parameters.Add(prmCustomerId);
+             MySqlParameter prmEmployeeId = new MySqlParameter();
+             prmEmployeeId.ParameterName = "@employee_id";
+             prmEmployeeId.Value = Id;
+             cmd.Parameters.Add(prmEmployeeId);
+             cmd.ExecuteNonQuery();
+             conn.Close();
+             if(conn!=null)
+             {
+                 conn.Dispose();
+             }
+         }
     }
 }
