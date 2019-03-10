@@ -4,7 +4,7 @@
 }
 <div class="header">
   <div class="left">
-    <form action='/employees/@Model["employee"].GetId()/customers/@Model["customer"].GetId()/delete' method="post">
+    <form action='/customers/@Model["customer"].GetId()/delete' method="post">
       <button class="btn btn-danger" type="submit">Delete</button>
     </form>
   </div>
@@ -14,6 +14,6 @@
   </div>
 </div>
 <hr>
-<p><a class="btn btn-warning" href='/employees/@Model["employee"].GetId()/customers/@Model["customer"].GetId()/edit'>Edit</a></p>
-<p><a class="btn btn-success" href='/employees/@Model["employee"].GetId()/'>Back to Cusomers</a></p>
+<p><a class="btn btn-warning" href='/customers/@Model["customer"].GetId()/edit'>Edit</a></p>
+<p><a class="btn btn-success" href='/customers/'>Back to Cusomers</a></p>
 
