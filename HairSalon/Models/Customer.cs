@@ -299,6 +299,36 @@ namespace HairSalon.Models
             }
             return allSpecialties;
         }
+
+        public Specialty GetCurrentHairCut()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("SELECT specialties.* FROM customers JOIN customer_specialty cs ON (customers.id = cs.customer_id) JOIN specialties ON (specialties.id = cs.specialty_id) WHERE customer_id = @customer_id AND current = @true;", conn);
+            MySqlParameter prmId = new MySqlParameter();
+            prmId.ParameterName = "@customer_id";
+            prmId.Value = Id;
+            cmd.Parameters.Add(prmId);
+            MySqlParameter prmCurrent = new MySqlParameter();
+            prmCurrent.ParameterName="@true";
+            prmCurrent.Value=true;
+            cmd.Parameters.Add(prmCurrent);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            string name="";
+            int id=0;
+            if(rdr.Read())
+            {
+                name=rdr.GetString(1);
+                id=rdr.GetInt32(0);
+            }
+            Specialty currentSpecialty = new Specialty(name, id);
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
+            return currentSpecialty;
+        }
     }
 
 

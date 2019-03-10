@@ -229,14 +229,48 @@ namespace HairSalon.Models
             }
         }
 
-        public void DeleteEmployee()
-        {
+        
 
+        public void DeleteEmployee(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("DELETE FROM employee_specialty WHERE employee_id = @employee_id AND specialty_id = @specialty_id;", conn);
+            MySqlParameter prmEmployeeId = new MySqlParameter();
+            prmEmployeeId.ParameterName = "@employee_id";
+            prmEmployeeId.Value = id;
+            cmd.Parameters.Add(prmEmployeeId);
+            MySqlParameter prmSpecialtyId = new MySqlParameter();
+            prmSpecialtyId.ParameterName = "@specialty_id";
+            prmSpecialtyId.Value = Id;
+            cmd.Parameters.Add(prmSpecialtyId);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
         }
 
-        public void DeleteCustomer()
+        public void DeleteCustomer(int id)
         {
-
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("DELETE FROM customer_specialty WHERE customer_id = @customer_id AND specialty_id = @specialty_id;", conn);
+            MySqlParameter prmCustomerId = new MySqlParameter();
+            prmCustomerId.ParameterName = "@customer_id";
+            prmCustomerId.Value = id;
+            cmd.Parameters.Add(prmCustomerId);
+            MySqlParameter prmSpecialtyId = new MySqlParameter();
+            prmSpecialtyId.ParameterName = "@specialty_id";
+            prmSpecialtyId.Value = Id;
+            cmd.Parameters.Add(prmSpecialtyId);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
         }
 
         public override bool Equals(System.Object otherSpecialty)

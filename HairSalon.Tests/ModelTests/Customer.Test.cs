@@ -107,41 +107,64 @@ namespace HairSalon.Tests
             List<Specialty> autoList = john.GetAllSpecialties();
             CollectionAssert.AreEqual(testList, autoList);
         }
-        [TestMethod]
-        public void DeleteSpecialty_DeletesSpecialty_SpecialtyList()
-        {
-            // Customer john = new Customer("John");
-            // john.Save();
-            // Specialty buzz = new Specialty("buzz");
-        }
 
         [TestMethod]
         public void GetSpecialties_GetsAllSpecialties_SpecialtyList()
         {
-            Customer john = new Customer("John");
-            john.Save();
-            Specialty buzz = new Specialty("buzz");
-            Specialty mullet = new Specialty("mullet");
-            buzz.Save();
-            mullet.Save();
-            john.AddSpecialty(buzz.GetId());
-            john.AddSpecialty(mullet.GetId());
-            List<Specialty> allSpecialties = new List<Specialty>{buzz, mullet};
-            List<Specialty> testList = john.GetAllSpecialties();
+            Customer newCustomer = new Customer("John");
+            newCustomer.Save();
+            Specialty newSpecialty = new Specialty("buzz");
+            Specialty newSpecialty2 = new Specialty("mullet");
+            newSpecialty.Save();
+            newSpecialty2.Save();
+            newCustomer.AddSpecialty(newSpecialty.GetId());
+            newCustomer.AddSpecialty(newSpecialty2.GetId());
+            List<Specialty> allSpecialties = new List<Specialty>{newSpecialty, newSpecialty2};
+            List<Specialty> testList = newCustomer.GetAllSpecialties();
             CollectionAssert.AreEqual(allSpecialties, testList);
         }
         [TestMethod]
         public void DeleteSpecialty_DeletesSpecialtyFromDatabase_SpecialtyList()
         {
-            Customer john = new Customer("John");
-            john.Save();
-            Specialty buzz = new Specialty("buzz");
-            buzz.Save();
-            john.AddSpecialty(buzz.GetId());
-            john.DeleteSpecialty(buzz.GetId());
+            Customer newCustomer = new Customer("John");
+            newCustomer.Save();
+            Specialty newSpecialty = new Specialty("buzz");
+            newSpecialty.Save();
+            newCustomer.AddSpecialty(newSpecialty.GetId());
+            newCustomer.DeleteSpecialty(newSpecialty.GetId());
             List<Specialty> allSpecialties = new List<Specialty>{};
-            List<Specialty> testList = john.GetAllSpecialties();
+            List<Specialty> testList = newCustomer.GetAllSpecialties();
             CollectionAssert.AreEqual(allSpecialties, testList);
+        }
+
+        [TestMethod]
+        public void AddSpecialty_SetsCurrentHairCut_True()
+        {
+            Customer newCustomer = new Customer("Jack");
+            newCustomer.Save();
+            Specialty newSpecialty = new Specialty("mullet");
+            Specialty newSpecialty2 = new Specialty("buzz");
+            newSpecialty.Save();
+            newSpecialty2.Save();
+            newCustomer.AddSpecialty(newSpecialty.GetId());
+            newCustomer.AddSpecialty(newSpecialty2.GetId());
+            Specialty foundSpecialty = newCustomer.GetCurrentHairCut();
+            Assert.AreEqual(newSpecialty2.GetName(), foundSpecialty.GetName());
+        }
+
+                [TestMethod]
+        public void AddSpecialty_SetsLastHairCutToFalse_False()
+        {
+            Customer newCustomer = new Customer("Jack");
+            newCustomer.Save();
+            Specialty newSpecialty = new Specialty("mullet");
+            Specialty newSpecialty2 = new Specialty("buzz");
+            newSpecialty.Save();
+            newSpecialty2.Save();
+            newCustomer.AddSpecialty(newSpecialty2.GetId());
+            newCustomer.AddSpecialty(newSpecialty.GetId());
+            Specialty foundSpecialty = newCustomer.GetCurrentHairCut();
+            Assert.AreNotEqual(newSpecialty2.GetName(), foundSpecialty.GetName());
         }
     }
 }
