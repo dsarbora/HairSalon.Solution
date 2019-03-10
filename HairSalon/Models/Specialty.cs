@@ -187,7 +187,11 @@ namespace HairSalon.Models
             List<Customer> allCustomers = new List<Customer>{};
             MySqlConnection conn = DB.Connection();
             conn.Open();
-            MySqlCommand cmd = new MySqlCommand("SELECT customers.* FROM specialties JOIN customer_specialty cs ON (specialties.id = cs.specialty_id) JOIN customers ON (customers.id=cs.customer_id);", conn);
+            MySqlCommand cmd = new MySqlCommand("SELECT customers.* FROM specialties JOIN customer_specialty cs ON (specialties.id = cs.specialty_id) JOIN customers ON (customers.id=cs.customer_id) WHERE specialty_id = @specialty_id;", conn);
+            MySqlParameter prmId = new MySqlParameter();
+            prmId.ParameterName = "@specialty_id";
+            prmId.Value = Id;
+            cmd.Parameters.Add(prmId);
             MySqlDataReader rdr = cmd.ExecuteReader();
             while(rdr.Read())
             {
@@ -202,6 +206,37 @@ namespace HairSalon.Models
                 conn.Dispose();
             }
             return allCustomers;
+        }
+
+        public void EditName(string name)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("UPDATE specialties SET name=@name WHERE id=@id", conn);
+            MySqlParameter prmName = new MySqlParameter();
+            prmName.ParameterName = "@name";
+            prmName.Value = name;
+            cmd.Parameters.Add(prmName);
+            MySqlParameter prmId = new MySqlParameter();
+            prmId.ParameterName = "@id";
+            prmId.Value = Id;
+            cmd.Parameters.Add(prmId);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if(conn!=null)
+            {
+                conn.Dispose();
+            }
+        }
+
+        public void DeleteEmployee()
+        {
+
+        }
+
+        public void DeleteCustomer()
+        {
+
         }
 
         public override bool Equals(System.Object otherSpecialty)

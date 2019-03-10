@@ -50,5 +50,74 @@ namespace HairSalon.Tests
             List<Specialty> autoList = Specialty.GetAll();
             CollectionAssert.AreEqual(manualList, autoList);
         }
+        [TestMethod]
+        public void AddEmployee_AddsEmployee_EmployeeList()
+        {
+            Employee newEmployee = new Employee("Jill");
+            Specialty newSpecialty = new Specialty("mullet");
+            newEmployee.Save();
+            newSpecialty.Save();
+            newSpecialty.AddEmployee(newEmployee.GetId());
+            List<Employee> specialtyEmployees = newSpecialty.GetAllEmployees();
+            List<Employee> testList = new List<Employee>{newEmployee};
+            CollectionAssert.AreEqual (testList, specialtyEmployees);
+        }
+
+        [TestMethod]
+        public void GetAllEmployees_GetsEmployees_EmployeeList()
+        {
+            Employee Jill = new Employee("Jill");
+            Employee Jack = new Employee("Jack");
+            Jill.Save();
+            Jack.Save();
+            Specialty newSpecialty = new Specialty("mullet");
+            newSpecialty.Save();
+            newSpecialty.AddEmployee(Jill.GetId());
+            newSpecialty.AddEmployee(Jack.GetId());
+            List<Employee> testList = new List<Employee> {Jill, Jack};
+            List<Employee> allList = newSpecialty.GetAllEmployees();
+            Console.WriteLine("{0} {1}", testList.Count, allList.Count);
+            CollectionAssert.AreEqual (testList, allList);
+        }
+
+        [TestMethod]
+        public void AddCustomer_AddsCustomer_CustomerList()
+        {
+            Specialty mullet = new Specialty("mullet");
+            mullet.Save();
+            Customer John = new Customer("John");
+            John.Save();
+            mullet.AddCustomer(John.GetId());
+            List<Customer> testList = mullet.GetAllCustomers();
+            List<Customer> manualList = new List<Customer>{John};
+            CollectionAssert.AreEqual (testList, manualList);
+        }
+
+        [TestMethod]
+        public void GetAllCustomers_GetsAllCustomers_CustomerList()
+        {
+            Specialty buzz = new Specialty("buzz");
+            buzz.Save();
+            Customer John = new Customer("John");
+            John.Save();
+            Customer James = new Customer("James");
+            James.Save();
+            buzz.AddCustomer(John.GetId());
+            buzz.AddCustomer(James.GetId());
+            List<Customer> manualList = new List<Customer>{John, James};
+            List<Customer> testList = buzz.GetAllCustomers();
+            Console.WriteLine(manualList.Count+ " " + testList.Count);
+            CollectionAssert.AreEqual(testList, manualList);
+        }
+
+        [TestMethod]
+        public void Edit_ChangesName_True()
+        {
+            Specialty buzz = new Specialty("buzz");
+            buzz.Save();
+            buzz.EditName("crew cut");
+            Specialty testSpecialty = Specialty.Find(buzz.GetId());
+            Assert.AreEqual("crew cut", testSpecialty.GetName());
+        }
     }
 }
