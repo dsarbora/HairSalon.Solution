@@ -20,7 +20,7 @@ namespace HairSalon.Controllers
             return View();
         }
 
-        [HttpPost("/employees/create")]
+        [HttpPost("/employees")]
         public ActionResult Create(string name)
         {
         Employee newEmployee = new Employee(name);
@@ -28,15 +28,17 @@ namespace HairSalon.Controllers
         return RedirectToAction("Index");
         }
 
-        // [HttpGet("/employees/{id}")]
-        // public ActionResult Show(int id)
-        // {
-        // Dictionary<string, object> model = new Dictionary<string, object>();
-        // Employee searchedEmployee = Employee.Find(id);
-        // model["employee"] = searchedEmployee;
-        // model["customers"] = searchedEmployee.GetAllCustomers();
-        // return View(model);
-        // }
+        [HttpGet("/employees/{id}")]
+        public ActionResult Show(int id)
+        {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Employee searchedEmployee = Employee.Find(id);
+        List<Customer> allCustomers = Customer.GetAll();
+        model["employee"] = searchedEmployee;
+        model["allCustomers"] = allCustomers;
+        model["employeeCustomers"] = searchedEmployee.GetAllCustomers();
+        return View(model);
+        }
 
         // [HttpGet("/employees/{id}/edit")]
         // public ActionResult Edit(int id)
@@ -59,6 +61,15 @@ namespace HairSalon.Controllers
         // Employee.Find(id).Delete();
         // return RedirectToAction("Index");
         // }
+
+        [HttpPost("/employees/{employeeId}/customers/new")]
+        public ActionResult AddCustomer(int employeeId, int customerId)
+        {
+            Employee newEmployee = Employee.Find(employeeId);
+            //Customer newCustomer = Customer.Find(customerId);
+            newEmployee.AddCustomer(customerId);
+            return RedirectToAction("Show", new {id=employeeId});
+        }
 
     }
 }

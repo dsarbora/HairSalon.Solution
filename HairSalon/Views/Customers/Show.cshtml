@@ -1,4 +1,4 @@
-@using HairSalon;
+@using HairSalon.Models;
 @{
   Layout="_Layout";
 }
@@ -9,11 +9,31 @@
     </form>
   </div>
   <h1>Customer: @Model["customer"].GetName()</h1>
-  <div class="right">
-    <h1>Stylist: @Model["employee"].GetName()</h1>
-  </div>
 </div>
 <hr>
-<p><a class="btn btn-warning" href='/customers/@Model["customer"].GetId()/edit'>Edit</a></p>
-<p><a class="btn btn-success" href='/customers/'>Back to Cusomers</a></p>
+<div class="row">
+  <div class="col-md-4">
+    <p><a class="btn btn-warning" href='/customers/@Model["customer"].GetId()/edit'>Edit</a></p>
+    <p><a class="btn btn-success" href='/customers/'>Back to Cusomers</a></p>
+  </div>
+  <div class="col-md-4">
+    @foreach(Employee employee in Model["customerEmployees"])
+    {
+      <p><a class="btn btn-info" href="/employees/@employee.GetId()">@employee.GetName()</a></p>
+    }
+  </div>
+  <div class="col-md-4">
+    <form action='/customers/@Model["customer"].GetId()/employees/new' method="post">
+      <label for="employeeId">Select Employee</label>
+      <select id="employeeId" name="employeeId">
+        @foreach(Employee employee in Model["allEmployees"])
+        {
+          <option value="@employee.GetId()">@employee.GetName()</option>
+        }
+      </select>
+      <button type="submit">Add Employee</button>
+    </form>
+  </div>
+</div>
+
 

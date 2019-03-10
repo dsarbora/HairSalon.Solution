@@ -21,13 +21,13 @@
   </div>
     <div class="col-md-4">
       <div>
-        @if(Model["customers"].Count == 0)
+        @if(Model["employeeCustomers"].Count == 0)
         {
           <p>No customers found for @Model["employee"].GetName()</p>
         }
-        @if(Model["customers"].Count != 0)
+        @if(Model["employeeCustomers"].Count != 0)
         {
-          @foreach(Customer customer in Model["customers"])
+          @foreach(Customer customer in Model["employeeCustomers"])
           {
             <p><a class="btn btn-info" href="/employees/@Model["employee"].GetId()/customers/@customer.GetId()">@customer.GetName()</a></p>
           }
@@ -35,6 +35,17 @@
       </div>
   </div>
   <div class="col-md-4">
+    <h3>Add a Customer to this Employee</h3>
+    <form action='/employees/@Model["employee"].GetId()/customers/new' method="post">
+      <label for='customerId'>Select a customer</label>
+      <select id='customerId' name='customerId'>
+        @foreach(Customer customer in Model["allCustomers"])
+        {
+          <option value="@customer.GetId()">@customer.GetName()</option>
+        }
+      </select>
+      <button type="submit">Add</button>
+    </form>
 
   </div>
 </div>
