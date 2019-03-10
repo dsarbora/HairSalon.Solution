@@ -8,8 +8,7 @@
 <hr>
 <div>
   <div>
-    <form action="/customers/create" method="post">
-      <input id="employee_id" name="employee_id" type="hidden" value="@Model.GetId()">
+    <form action="/customers" method="post">
       <label for="name">Name</label>
       <input id="name" name="name" type="text" required>
       <br>
@@ -18,4 +17,5 @@
   </div>
 </div>
 
-<a class="btn btn-success" href="/employees/@Model.GetId()">Back to Customers</a>
+<p><a class="btn btn-success" href="/customers">Customers</a></p>
+<p><a class="btn btn-success" href="/employees">Employees</a></p>

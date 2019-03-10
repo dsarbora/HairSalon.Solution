@@ -20,7 +20,7 @@ namespace HairSalon.Controllers
             return View();
         }
 
-        [HttpPost("/employees")]
+        [HttpPost("/employees/create")]
         public ActionResult Create(string name)
         {
         Employee newEmployee = new Employee(name);
@@ -28,45 +28,37 @@ namespace HairSalon.Controllers
         return RedirectToAction("Index");
         }
 
-        [HttpGet("/employees/{id}")]
-        public ActionResult Show(int id)
-        {
-        Dictionary<string, object> model = new Dictionary<string, object>();
-        Employee searchedEmployee = Employee.Find(id);
-        model["employee"] = searchedEmployee;
-        model["customers"] = searchedEmployee.GetAllCustomers();
-        return View(model);
-        }
+        // [HttpGet("/employees/{id}")]
+        // public ActionResult Show(int id)
+        // {
+        // Dictionary<string, object> model = new Dictionary<string, object>();
+        // Employee searchedEmployee = Employee.Find(id);
+        // model["employee"] = searchedEmployee;
+        // model["customers"] = searchedEmployee.GetAllCustomers();
+        // return View(model);
+        // }
 
-        [HttpGet("/employees/{id}/edit")]
-        public ActionResult Edit(int id)
-        {
-        Employee searchedEmployee = Employee.Find(id);
-        return View(searchedEmployee);
-        }
+        // [HttpGet("/employees/{id}/edit")]
+        // public ActionResult Edit(int id)
+        // {
+        // Employee searchedEmployee = Employee.Find(id);
+        // return View(searchedEmployee);
+        // }
 
-        [HttpPost("/employees/{id}")]
-        public ActionResult Update(int id, string name)
-        {
-        Employee searchedEmployee = Employee.Find(id);
-        searchedEmployee.Edit(name);
-        return RedirectToAction("Show", id);
-        }
+        // [HttpPost("/employees/{id}")]
+        // public ActionResult Update(int id, string name)
+        // {
+        // Employee searchedEmployee = Employee.Find(id);
+        // searchedEmployee.Edit(name);
+        // return RedirectToAction("Show", id);
+        // }
 
-        [HttpPost("/employees/{id}/delete")]
-        public ActionResult Delete(int id)
-        {
-        Employee.Find(id).Delete();
-        return RedirectToAction("Index");
-        }
+        // [HttpPost("/employees/{id}/delete")]
+        // public ActionResult Delete(int id)
+        // {
+        // Employee.Find(id).Delete();
+        // return RedirectToAction("Index");
+        // }
 
-        [HttpPost("/employees/{id}/customers")]
-        public ActionResult Create(int id, string name)
-        {
-            Employee searchedEmployee = Employee.Find(id);
-            Customer newCustomer = new Customer(name);
-            newCustomer.Save();
-            return RedirectToAction("Show", id);
-        }
     }
 }
