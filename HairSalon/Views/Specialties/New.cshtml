@@ -1,0 +1,18 @@
+@using HairSalon.Models;
+@{
+    Layout="_Layout";
+}
+<h1>New Specialty</h1>
+<div class="row">
+    <div class="col-md-6">
+        <form action="/specialties" method="post">
+            <label for="name">Style name: </label>
+            <input id="name" name="name" required>
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
+        <p><a class="btn btn-info" href="/specialties">Back to specialties</a></p>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+</div>

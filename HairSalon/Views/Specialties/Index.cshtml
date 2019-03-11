@@ -1,0 +1,26 @@
+@using HairSalon.Models;
+@{
+    Layout="_Layout";
+}
+<div class="header">
+    <h1 class="title">Specialties Home</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div>
+            <p><a class="btn btn-success" href="/specialties/new">Add a Specialty</a></p>
+            <p><a class="btn btn-info" href="/">Back home</a></p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div>
+            @foreach(Specialty specialty in Model)
+            {
+                <a class="btn btn-info" href="/specialties/@specialty.GetId()">@specialty.GetName()</a>
+            }
+        </div>
+    </div>
+    <div class="col-md-4">
+        
+    </div>
+</div>

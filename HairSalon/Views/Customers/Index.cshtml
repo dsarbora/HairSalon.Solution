@@ -1,8 +1,14 @@
 @using HairSalon.Models;
+@{
+    Layout="_Layout";
+}
+<div class="header">
+    <h1 class="title">Customers Home</h1>
+</div>
 <div class="row">
     <div class="col-md-4">
         <div>
-            <p><a class="btn btn-info" href="/customers/new">Add a customer</a></p>
+            <p><a class="btn btn-success" href="/customers/new">Add a customer</a></p>
             <p><a class="btn btn-info" href="/">Back home</a></p>
         </div>
     </div>
@@ -10,7 +16,7 @@
         <div>
             @foreach(Customer customer in Model)
             {
-                <a href="/customers/@customer.GetId()">@customer.GetName()</a>
+                <a class="btn btn-info" href="/customers/@customer.GetId()">@customer.GetName()</a>
             }
         </div>
     </div>

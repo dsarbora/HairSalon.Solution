@@ -16,17 +16,17 @@ namespace HairSalonControllers.Tests
             Customer.ClearAll();
         }
 
-        [TestMethod]
-        public void New_HasCorrectModelType_True()
-        {
-            Employee newEmployee = new Employee("Jane");
-            newEmployee.Save();
-            int id = newEmployee.GetId();
-            CustomersController controller = new CustomersController();
-            ViewResult newView = controller.New(id) as ViewResult;
-            var result = newView.ViewData.Model;
-            Assert.IsInstanceOfType(result, typeof(Employee));
-        }
+        // [TestMethod]
+        // public void New_HasCorrectModelType_True()
+        // {
+        //     Employee newEmployee = new Employee("Jane");
+        //     newEmployee.Save();
+        //     int id = newEmployee.GetId();
+        //     CustomersController controller = new CustomersController();
+        //     ViewResult newView = controller.New(id) as ViewResult;
+        //     var result = newView.ViewData.Model;
+        //     Assert.IsInstanceOfType(result, typeof(Employee));
+        // }
         // [TestMethod]
         // public void Show_HasCorrectModelType_True()
         // {

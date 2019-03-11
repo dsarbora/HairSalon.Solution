@@ -1,0 +1,22 @@
+@using HairSalon.Models;
+@{
+    Layout="_Layout";
+}
+<div class="header">
+    <h1 class="title">Edit @Model.GetName()</h1>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <form action="specialties/@Model.GetId()/update" method="post">
+            <label for="name">Name</label>
+            <input id="name" name="name" value="@Model.GetName()" type="text">
+            <input id="specialtyId" name="specialtyId" value="@Model.GetId()" type="hidden">
+            <button type="submit" class="btn btn-info">Edit</button>
+        </form>
+        <p><a class="btn btn-info" href="/specialties">Cancel</a></p>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+</div>
