@@ -1,0 +1,19 @@
+@using HairSalon.Models;
+@{
+    Layout="_Layout";
+}
+<div class="header">
+    <h1 class="title">@Model["specialty"].GetName()</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <p><a class="btn btn-warning" href='/specialties/@Model["specialty"].GetId()/edit'>Edit @Model["specialty"].GetName()</a></p>
+        <p><a class="btn btn-info" href="/specialties">Back to specialties</a></p>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
