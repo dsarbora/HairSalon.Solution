@@ -33,10 +33,10 @@ namespace HairSalon.Controllers
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Specialty specialty = Specialty.Find(specialtyId);
-            List<Customer> allCustomers = new List<Customer>();
-            List<Customer> specialtyCustomers = new List<Customer>();
-            List<Employee> allEmployees = new List<Employee>();
-            List<Employee> specialtyEmployees = new List<Employee>();
+            List<Customer> allCustomers = Customer.GetAll();
+            List<Customer> specialtyCustomers = specialty.GetAllCustomers();
+            List<Employee> allEmployees = Employee.GetAll();
+            List<Employee> specialtyEmployees = specialty.GetAllEmployees();
             model.Add("specialty", specialty);
             model.Add("allEmployees", allEmployees);
             model.Add("specialtyEmployees", specialtyEmployees);
@@ -59,6 +59,28 @@ namespace HairSalon.Controllers
             Specialty specialty = Specialty.Find(specialtyId);
             specialty.EditName(name);
             return RedirectToAction("Show", specialtyId);
+        }
+
+        [HttpPost("/specialties/{specialtyId}/delete")]
+        public ActionResult Delete(int specialtyId)
+        {
+            Specialty specialty = Specialty.Find(specialtyId);
+            specialty.Delete();
+            return RedirectToAction("Index");
+        }
+        
+        [HttpPost("/specialties/{specialtyId}/employees/new")]
+        public ActionResult AddEmployee(int specialtyId, int employeeId)
+        {
+            Specialty.Find(specialtyId).AddEmployee(employeeId);
+            return RedirectToAction("Show");
+        }
+
+        [HttpPost("/specialties/{specialtyId}/customers/new")]
+        public ActionResult AddCustomer(int specialtyId, int employeeId)
+        {
+            Specialty.Find(specialtyId).AddEmployee(employeeId);
+            return RedirectToAction("Show");
         }
     }
 }

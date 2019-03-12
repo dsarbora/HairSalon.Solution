@@ -34,40 +34,48 @@ namespace HairSalon.Controllers
         Dictionary<string, object> model = new Dictionary<string, object>();
         Employee searchedEmployee = Employee.Find(id);
         List<Customer> allCustomers = Customer.GetAll();
+        List<Specialty> allSpecialties = Specialty.GetAll();
         model["employee"] = searchedEmployee;
+        model["allSpecialties"] = allSpecialties;
         model["allCustomers"] = allCustomers;
         model["employeeCustomers"] = searchedEmployee.GetAllCustomers();
         return View(model);
         }
 
-        // [HttpGet("/employees/{id}/edit")]
-        // public ActionResult Edit(int id)
-        // {
-        // Employee searchedEmployee = Employee.Find(id);
-        // return View(searchedEmployee);
-        // }
+        [HttpGet("/employees/{id}/edit")]
+        public ActionResult Edit(int id)
+        {
+        Employee searchedEmployee = Employee.Find(id);
+        return View(searchedEmployee);
+        }
 
-        // [HttpPost("/employees/{id}")]
-        // public ActionResult Update(int id, string name)
-        // {
-        // Employee searchedEmployee = Employee.Find(id);
-        // searchedEmployee.Edit(name);
-        // return RedirectToAction("Show", id);
-        // }
+        [HttpPost("/employees/{id}")]
+        public ActionResult Update(int id, string name)
+        {
+        Employee searchedEmployee = Employee.Find(id);
+        searchedEmployee.Edit(name);
+        return RedirectToAction("Show", id);
+        }
 
-        // [HttpPost("/employees/{id}/delete")]
-        // public ActionResult Delete(int id)
-        // {
-        // Employee.Find(id).Delete();
-        // return RedirectToAction("Index");
-        // }
+        [HttpPost("/employees/{id}/delete")]
+        public ActionResult Delete(int id)
+        {
+            Employee.Find(id).Delete();
+            return RedirectToAction("Index");
+        }
 
         [HttpPost("/employees/{employeeId}/customers/new")]
         public ActionResult AddCustomer(int employeeId, int customerId)
         {
             Employee newEmployee = Employee.Find(employeeId);
-            //Customer newCustomer = Customer.Find(customerId);
             newEmployee.AddCustomer(customerId);
+            return RedirectToAction("Show", new {id=employeeId});
+        }
+
+        [HttpPost("/employees/{employeeId}/specialties/new")]
+        public ActionResult AddSpecialty(int employeeId, int specialtyId)
+        {
+            Employee.Find(employeeId).AddSpecialty(specialtyId);
             return RedirectToAction("Show", new {id=employeeId});
         }
 

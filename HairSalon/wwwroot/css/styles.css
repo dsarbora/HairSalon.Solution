@@ -12,19 +12,12 @@ body {
 }
 
 a {
-    /* border-bottom: 1px solid #777777;
-    border-left: 1px solid #000000;
-    border-right: 1px solid #333333;
-    border-top: 1px solid #000000;
-    border-radius: 30px;
-    color: rgb(181, 173, 212);
-    background-color: #000000;
-    display: block; */
     height: 50px;
     padding: 0 1em;
     width: 150px;       
     text-decoration: none;
     font-weight: bold;
+    color: black
 }
 form {
     margin-bottom: 30px;
@@ -66,7 +59,15 @@ input {
     text-align: center;
     padding: 15px;
 }
+
+.green{
+    background-color: rgb(145, 172, 133)
+}
 .half-panel{
     width: 200px;
+}
+
+.btn{
+    margin-top: 10px;
 }
 

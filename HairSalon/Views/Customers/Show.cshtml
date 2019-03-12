@@ -33,6 +33,16 @@
       </select>
       <button type="submit">Add Employee</button>
     </form>
+    <form action='/customers/@Model["customer"].GetId()/specialties/new' method="post">
+      <label for="specialtyId">Select Specialty</label>
+      <select id="specialtyId" name="specialtyId">
+        @foreach(Specialty specialty in Model["allSpecialties"])
+        {
+          <option value="@specialty.GetId()">@specialty.GetName()</option>
+        }
+      </select>
+      <button type="submit">Get haircut</button>
+    </form>
   </div>
 </div>
 

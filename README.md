@@ -17,8 +17,23 @@ _The website uses a database to store information about customers and employees,
 * _View details (currently just name) about each customer._
 
 ## _Setup/Installation Requirements_
-Download .NET Core 1.1.4 SDK and .NET Core Runtime 1.1.2 and install.
+**Setup**
+----
+* Download .NET Core 1.1.4 SDK and .NET Core Runtime 1.1.2 and install.
 Download Mono and install.
+
+* Download and install MAMP.
+
+* Open the Control Panel and visit System > Advanced System Settings > Environment Variables...
+
+* Then select PATH..., click Edit..., then Add.
+
+* Add the exact location of your MySQL installation, as mentioned in step two above, and click OK. (This location is likely C:\MAMP\bin\mysql\bin, but may differ depending on your specific installation.)
+
+* If you receive error stating the command mySQL is "not recognized", the location you provided is likely inaccurate. Double-check it and try again.
+
+**Running the project**
+----
 
 * _Clone the project from [https://github.com/dsarbora/HairSalon.Solution](https://github.com/dsarbora/HairSalon.Solution)
 * _Navigate in the command line to HairSalon.Solution/HairSalon.Test/_
@@ -26,7 +41,8 @@ Download Mono and install.
 * _To run the tests, use the command **$dotnet test.**_
 * _To run the program, navigate in the command line to HairSalon.Solution/HairSalon._
 * _If not not previously restored, use the command **$dotnet restore,** followed by **$dotnet build,** and then **$dotnet run** to run the program in browser.
-* _Natvigate to http://localhost:5000/ in your web browser._
+* _Unzip the databases._
+* _Navigate to http://localhost:5000/ in your web browser._
 
 ## _DATABASE INFORMATION_
 * _There are two databases associated with this project. If needed, they can be created under the names "dave_sarbora" and "dave_sarbora_test."_

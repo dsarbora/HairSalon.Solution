@@ -5,7 +5,7 @@
 <div class="header">
   <div class="left">
     <form action='/employees/@Model["employee"].GetId()/delete' method="post">
-    <button class="btn btn-danger" type='submit'>Delete</button>
+    <button class="btn btn-danger" type='submit'>Fire @Model["employee"].GetName()</button>
     </form>
   </div>
   <h1 class="title">@Model["employee"].GetName()</h1>
@@ -29,19 +29,29 @@
         {
           @foreach(Customer customer in Model["employeeCustomers"])
           {
-            <p><a class="btn btn-info" href="/employees/@Model["employee"].GetId()/customers/@customer.GetId()">@customer.GetName()</a></p>
+            <p><a class="btn btn-info" href="/customers/@customer.GetId()">@customer.GetName()</a></p>
           }
         }
       </div>
   </div>
   <div class="col-md-4">
-    <h3>Add a Customer to this Employee</h3>
+    <h4>Add a Customer to this Employee</h4>
     <form action='/employees/@Model["employee"].GetId()/customers/new' method="post">
       <label for='customerId'>Select a customer</label>
       <select id='customerId' name='customerId'>
         @foreach(Customer customer in Model["allCustomers"])
         {
           <option value="@customer.GetId()">@customer.GetName()</option>
+        }
+      </select>
+      <button type="submit">Add</button>
+    </form>
+    <form action='/employees/@Model["employee"].GetId()/specialties/new' method="post">
+      <label for='specialtyId'>Add a style</label>
+      <select id='specialtyId' name='specialtyId'>
+        @foreach(Specialty specialty in Model["allSpecialties"])
+        {
+          <option value="@specialty.GetId()">@specialty.GetName()</option>
         }
       </select>
       <button type="submit">Add</button>

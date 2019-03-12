@@ -3,6 +3,11 @@
     Layout="_Layout";
 }
 <div class="header">
+    <div class="left">
+        <form action='/specialties/@Model["specialty"].GetId()/delete' method="post">
+            <button class="btn btn-danger" type="submit">Delete</button>
+        </form>
+    </div>
     <h1 class="title">@Model["specialty"].GetName()</h1>
 </div>
 <div class="row">
@@ -11,9 +16,35 @@
         <p><a class="btn btn-info" href="/specialties">Back to specialties</a></p>
     </div>
     <div class="col-md-4">
-
+        @if(Model["specialtyEmployees"].Count!=0)
+        {
+            @foreach(Employee employee in Model["specialtyEmployees"])
+            {
+                <p><a class="btn btn-info" href="/employees/@employee.GetId()">@employee.GetName()</a></p>
+            }
+        }
     </div>
     <div class="col-md-4">
+        <form action='/specialties/@Model["specialty"].GetId()/customers/new' method="post">
+      <label for='customerId'>Select a customer</label>
+      <select id='customerId' name='customerId'>
+        @foreach(Customer customer in Model["allCustomers"])
+        {
+          <option value="@customer.GetId()">@customer.GetName()</option>
+        }
+      </select>
+      <button type="submit">Add</button>
+    </form>
+    <form action='/specialties/@Model["specialty"].GetId()/employees/new' method="post">
+      <label for='employeeId'>Add an employee</label>
+      <select id='employeeId' name='employeeId'>
+        @foreach(Employee employee in Model["allEmployees"])
+        {
+          <option value="@employee.GetId()">@employee.GetName()</option>
+        }
+      </select>
+      <button type="submit">Add</button>
+    </form>
 
     </div>
 </div>
