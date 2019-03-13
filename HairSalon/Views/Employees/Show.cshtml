@@ -30,7 +30,7 @@
           <h4>All customers who visit @Model["employee"].GetName()</h4>
           @foreach(Customer customer in Model["employeeCustomers"])
           {
-            <p><a class="btn btn-info" href="/customers/@customer.GetId()">@customer.GetName()</a></p>
+            <p><a class="btn gray" href="/customers/@customer.GetId()">@customer.GetName()</a></p>
           }
         }
       </div>
@@ -45,7 +45,7 @@
           <option value="@customer.GetId()">@customer.GetName()</option>
         }
       </select>
-      <button type="submit">Add</button>
+      <button class="btn gray" type="submit">Add</button>
     </form>
     <h4>Add a specialty this employee offers</h4>
     <form action='/employees/@Model["employee"].GetId()/specialties/new' method="post">
@@ -56,7 +56,7 @@
           <option value="@specialty.GetId()">@specialty.GetName()</option>
         }
       </select>
-      <button type="submit">Add</button>
+      <button class="btn gray" type="submit">Add</button>
     </form>
 
   </div>

@@ -11,7 +11,7 @@
   <h1>Customer: @Model["customer"].GetName()</h1>
 </div>
 <hr>
-<div class="row">
+<div class="row topRowShow">
   <div class="col-md-4">
     <p><a class="btn btn-warning" href='/customers/@Model["customer"].GetId()/edit'>Edit</a></p>
     <p><a class="btn btn-success" href='/customers/'>Back to Cusomers</a></p>
@@ -20,7 +20,7 @@
     <h4>All stylists @Model["customer"].GetName() visits</h4>
     @foreach(Employee employee in Model["customerEmployees"])
     {
-      <p><a class="btn btn-info" href="/employees/@employee.GetId()">@employee.GetName()</a></p>
+      <a class="btn gray" href="/employees/@employee.GetId()">@employee.GetName()</a>
     }
   </div>
   <div class="col-md-4">
@@ -32,8 +32,16 @@
           <option value="@employee.GetId()">@employee.GetName()</option>
         }
       </select>
-      <button type="submit">Add stylist for @Model["Customer"].GetName()</button>
+      <button class ="btn gray" type="submit">Add stylist for @Model["customer"].GetName()</button>
     </form>
+    
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-5">
+
+  </div>
+  <div class="col-md-3">
     <form action='/customers/@Model["customer"].GetId()/specialties/new' method="post">
       <label for="specialtyId">Select Specialty</label>
       <select id="specialtyId" name="specialtyId">
@@ -42,9 +50,15 @@
           <option value="@specialty.GetId()">@specialty.GetName()</option>
         }
       </select>
-      <button type="submit">Get haircut</button>
+      <br>
+      <button class="btn gray" type="submit">Get haircut</button>
     </form>
   </div>
+  <div class="col-md-4">
+    <h4>Currently sporting:</h4>
+    <div class="well">
+      <h1>@Model["customer"].GetCurrentHairCut().GetName()</h1>
+    </div>
+  </div>
 </div>
-
 

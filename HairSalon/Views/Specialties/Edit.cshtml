@@ -8,7 +8,7 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        <form action="specialties/@Model.GetId()/update" method="post">
+        <form action="/specialties/@Model.GetId()/update" method="post">
             <label for="name">Name</label>
             <input id="name" name="name" value="@Model.GetName()" type="text">
             <input id="specialtyId" name="specialtyId" value="@Model.GetId()" type="hidden">

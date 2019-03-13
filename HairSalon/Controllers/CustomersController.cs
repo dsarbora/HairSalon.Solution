@@ -72,5 +72,13 @@ namespace HairSalon.Controllers
             customer.AddEmployee(employeeId);
             return RedirectToAction("Show", new {id=customerId});
         }
+        [HttpPost("/customers/{customerId}/specialties/new")]
+        public ActionResult AddSpecialty(int customerId, int specialtyId)
+        {
+            Customer customer = Customer.Find(customerId);
+            Specialty specialty = Specialty.Find(specialtyId);
+            customer.AddSpecialty(specialty.GetId());
+            return RedirectToAction("Show", new {id=customerId});
+        }
     }
 }

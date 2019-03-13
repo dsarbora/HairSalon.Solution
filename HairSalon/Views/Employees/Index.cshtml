@@ -3,7 +3,7 @@
   Layout="_Layout";
 }
 <div class="header">
-  <h1 class="title">EMPLOYEE INDEX</h1>
+  <h1 class="title">The Barbershop Family</h1>
 </div>
 <hr>
 <div class="row">
@@ -20,7 +20,7 @@
     {
       @foreach(Employee employee in Model)
       {
-        <p><a class="btn btn-info" href="/employees/@employee.GetId()">@employee.GetName()</a></p>
+        <p><a class="btn gray" href="/employees/@employee.GetId()">@employee.GetName()</a></p>
       }
     }
   </div>

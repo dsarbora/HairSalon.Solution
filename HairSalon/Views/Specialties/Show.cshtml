@@ -16,6 +16,7 @@
         <p><a class="btn btn-info" href="/specialties">Back to specialties</a></p>
     </div>
     <div class="col-md-4">
+        
         @if(Model["specialtyEmployees"].Count!=0)
         {
             <h4>All Employees offering @Model["specialty"].GetName()</h4>
@@ -34,7 +35,7 @@
           <option value="@customer.GetId()">@customer.GetName()</option>
         }
       </select>
-      <button type="submit">Add</button>
+      <button class="btn gray"type="submit">Add</button>
     </form>
     <form action='/specialties/@Model["specialty"].GetId()/employees/new' method="post">
       <label for='employeeId'>Add an employee</label>
@@ -44,7 +45,7 @@
           <option value="@employee.GetId()">@employee.GetName()</option>
         }
       </select>
-      <button type="submit">Add</button>
+      <button class="btn gray" type="submit">Add</button>
     </form>
 
     </div>

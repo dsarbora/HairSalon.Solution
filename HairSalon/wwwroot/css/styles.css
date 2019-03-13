@@ -1,14 +1,17 @@
 body {
-    padding: 30 px;
-    background-color: #CCCCCC;
+    padding: 50 px;
+    background-color: rgb(214, 192, 192);
 }
 
 .header {
     text-align: center;
+    height: 100px;
 }
 
 .title {
     font-size: 50px;
+    font-family: 'Srisakdi', cursive;
+    margin: 50px;
 }
 
 a {
@@ -71,3 +74,15 @@ input {
     margin-top: 10px;
 }
 
+.tooBig {
+    /* margin-top: 45px; */
+    height: 400px;
+}
+
+.gray {
+    background-color: rgb(117, 117, 117)
+}
+
+.topRowShow {
+    height: 250px;
+}
