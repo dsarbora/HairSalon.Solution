@@ -84,10 +84,13 @@ Each table is shown below as a one column, with their columns themselves depicte
 |id               |id                |id                |
 |customer_id      |customer_id       |employee_id       |
 |employee_id      |specialty_id      |specialty_id      |
-|                 |                  |                  |
-|customers|employees|specialties|customer_employee|customer_specialty|employee_specialty|
-_The "employees" table should include two columns in this order: "id," a serial PRIMARY KEY, and "name," data type VARCHAR._
-* _The "customers" table is comprised of three columns in this order: "id," a serial PRIMARY KEY, "name," with data type VARCHAR, and "employee_id" of type int._
+|                 |current           |                  |
+|
+
+* _**id** refers to a serial PRIMARY KEY_*
+* _**name** refers to a VARCHAR_
+* _all **foreign id** keys refer to an INT_
+* _**current**, in the customer specialty join table, refers to a BOOLEAN that is only toggled on for the last haircut a customer is associated with._
 
 ## _Known Bugs_
 _User interface is not fully built, users may be unable to make use of certain methods available to each class._
