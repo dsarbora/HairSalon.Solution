@@ -16,44 +16,42 @@ namespace HairSalonControllers.Tests
             Customer.ClearAll();
         }
 
-        // [TestMethod]
-        // public void New_HasCorrectModelType_True()
-        // {
-        //     Employee newEmployee = new Employee("Jane");
-        //     newEmployee.Save();
-        //     int id = newEmployee.GetId();
-        //     CustomersController controller = new CustomersController();
-        //     ViewResult newView = controller.New(id) as ViewResult;
-        //     var result = newView.ViewData.Model;
-        //     Assert.IsInstanceOfType(result, typeof(Employee));
-        // }
-        // [TestMethod]
-        // public void Show_HasCorrectModelType_True()
-        // {
-        //     Employee newEmployee = new Employee("Jane");
-        //     newEmployee.Save();
-        //     int employeeId = newEmployee.GetId();
-        //     Customer newCustomer = new Customer("John");
-        //     newCustomer.Save();
-        //     int id = newCustomer.GetId();
-        //     CustomersController controller = new CustomersController();
-        //     ViewResult showView = controller.Show(employeeId, id) as ViewResult;
-        //     var result = showView.ViewData.Model;
-        //     Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
-        // }
-        // [TestMethod]
-        // public void Edit_HasCorrectModelType_True()
-        // {
-        //     Employee newEmployee = new Employee("Jane");
-        //     newEmployee.Save();
-        //     int employeeId = newEmployee.GetId();
-        //     Customer newCustomer = new Customer("John", employeeId);
-        //     newCustomer.Save();
-        //     int id = newCustomer.GetId();
-        //     CustomersController controller = new CustomersController();
-        //     ViewResult showView = controller.Show(id, employeeId) as ViewResult;
-        //     var result = showView.ViewData.Model;
-        //     Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
-        // }
+        [TestMethod]
+        public void New_ReturnsCorrectView_True()
+        {
+            CustomersController controller = new CustomersController();
+            ViewResult newView = controller.New() as ViewResult;
+            Assert.IsInstanceOfType(newView, typeof(ViewResult));
+        }
+        [TestMethod]
+        public void Show_HasCorrectModelType_True()
+        {
+            Customer newCustomer = new Customer("John");
+            newCustomer.Save();
+            CustomersController controller = new CustomersController();
+            ViewResult showView = controller.Show(newCustomer.GetId()) as ViewResult;
+            var result = showView.ViewData.Model;
+            Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
+        }
+        [TestMethod]
+        public void Edit_HasCorrectModelType_True()
+        {
+            
+            Customer newCustomer = new Customer("John");
+            newCustomer.Save();
+            int id = newCustomer.GetId();
+            CustomersController controller = new CustomersController();
+            ViewResult showView = controller.Show(id) as ViewResult;
+            var result = showView.ViewData.Model;
+            Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
+        }
+        [TestMethod]
+        public void Index_HasCorrectModelType_CustomerList()
+        {
+            CustomersController controller = new CustomersController();
+            ViewResult indexView = controller.Index() as ViewResult;
+            var result = indexView.ViewData.Model;
+            Assert.IsInstanceOfType(result, typeof(List<Customer>));
+        }
     }
 }
