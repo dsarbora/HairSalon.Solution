@@ -73,12 +73,14 @@ The column id represents an automatically incrementing primary key.
 
 Each table is shown below as a one column, with their columns themselves depicted as rows.
 **Primary tables**
+
 |customers|employees|specialties|
 |--------:|:-------:|-----------|
 |id       |id       |id         |
 |name     |name     |name       |
 
 **Join tables**
+
 |customer_employee|customer_specialty|employee_specialty|
 |----------------:|:----------------:|------------------|
 |id               |id                |id                |
