@@ -27,6 +27,7 @@
         }
         @if(Model["employeeCustomers"].Count != 0)
         {
+          <h4>All customers who visit @Model["employee"].GetName()</h4>
           @foreach(Customer customer in Model["employeeCustomers"])
           {
             <p><a class="btn btn-info" href="/customers/@customer.GetId()">@customer.GetName()</a></p>
@@ -46,6 +47,7 @@
       </select>
       <button type="submit">Add</button>
     </form>
+    <h4>Add a specialty this employee offers</h4>
     <form action='/employees/@Model["employee"].GetId()/specialties/new' method="post">
       <label for='specialtyId'>Add a style</label>
       <select id='specialtyId' name='specialtyId'>

@@ -17,6 +17,7 @@
     <p><a class="btn btn-success" href='/customers/'>Back to Cusomers</a></p>
   </div>
   <div class="col-md-4">
+    <h4>All stylists @Model["customer"].GetName() visits</h4>
     @foreach(Employee employee in Model["customerEmployees"])
     {
       <p><a class="btn btn-info" href="/employees/@employee.GetId()">@employee.GetName()</a></p>
@@ -31,7 +32,7 @@
           <option value="@employee.GetId()">@employee.GetName()</option>
         }
       </select>
-      <button type="submit">Add Employee</button>
+      <button type="submit">Add stylist for @Model["Customer"].GetName()</button>
     </form>
     <form action='/customers/@Model["customer"].GetId()/specialties/new' method="post">
       <label for="specialtyId">Select Specialty</label>

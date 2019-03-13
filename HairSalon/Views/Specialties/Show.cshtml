@@ -18,6 +18,7 @@
     <div class="col-md-4">
         @if(Model["specialtyEmployees"].Count!=0)
         {
+            <h4>All Employees offering @Model["specialty"].GetName()</h4>
             @foreach(Employee employee in Model["specialtyEmployees"])
             {
                 <p><a class="btn btn-info" href="/employees/@employee.GetId()">@employee.GetName()</a></p>

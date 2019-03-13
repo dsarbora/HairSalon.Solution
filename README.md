@@ -10,7 +10,7 @@ _The website uses a database to store information about customers and employees,
 ## _Specifications_
 
 #### _This site is composed of a homepage and three subpages. From the homepage, a user can visit the employees, customers, or specialties homepage.
-* The class homepage offers navigation to many of the other features of the website. Clicking on the buttons on the left of the screen will take you to a pa. Each button on the screen directs to a different path. It is divided into three columns.**
+* The class homepage offers navigation to many of the other features of the website. Each button on the screen directs to a different path. It is divided into three columns.
 * In the left column are the navigational buttons which will bring you to different screens where instances of the class may be added or edited.
 
 * For example, clicking the green "Hire a new empoloyee" button in the left column of the employees homepage will take you to a form where you can add a new employee. As much as possible, the author tried to stay consistent with this format throughout the construction of the website.
@@ -87,7 +87,6 @@ Each table is shown below as a one column, with their columns themselves depicte
 |customer_id      |customer_id       |employee_id       |
 |employee_id      |specialty_id      |specialty_id      |
 |                 |current           |                  |
-|
 
 * _**id** refers to a serial PRIMARY KEY_*
 * _**name** refers to a VARCHAR_
@@ -114,3 +113,9 @@ _Contact me at [dsarbora@gmail.com](dsarbora@gmail.com)_
 *MIT*
 
 Copyright (c) 2019 **_Dave Sarbora_**
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
